@@ -1,0 +1,39 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+    <div class=" d-flex justify-content-center">
+    <form method="post" action="index.php" class="well w-75 border-info shadow">
+	<fieldset>
+	<legend class="text-center fw-bold">Evaluez le jeu</legend>
+        {# note #}
+		<div class="form-group row">
+            <label for="selectnote">Note du jeu sur 5</label>
+            <select name="note" class="form-control" id="selectnote">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option selected>5</option>
+            </select>
+		</div>
+
+        {# commente #}
+		<div class="form-group row">
+            <label for="areacommentaire">Commentaire</label>
+            <textarea class="form-control" name="commentaire" id="areacommentaire" rows="4"></textarea>
+		</div>
+
+		<br>
+        {# bouton #}
+        <input type="hidden" name="Id_jeu" value="{{Id}}">
+        <input type="hidden" name="nom_utilisateur" value="{{nom_utilisateur}}">
+		<div class="col-md-12 text-center">
+            
+            <input class="btn btn-outline-info btn-light shadow" type="submit" name="publier" value="Publier"/>
+        </div>
+	
+	</fieldset>
+	</form>
+	</div>
+
+{% endblock %}

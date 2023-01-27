@@ -1,0 +1,95 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+<div  class="row d-flex container-fluid justify-content-around mx-auto ">
+    <form method="post" action="index.php" class="well w-75 border-info shadow">
+	<fieldset>
+        
+	<legend class="text-center fw-bold">Modifier le jeu</legend>
+
+        {# titre #}
+		<div class="form-group row my-2">
+		    <label for="titre" class="col-sm-2 col-form-label col-form-label-sm ">Intitulé du jeu</label>
+		    <div class="col-sm-8">
+			    <input  type="text" id="titre" class="form-control form-control-sm" name="titre" required value="{{jeu.titre}}" />
+		    </div>
+        </div>
+
+		{# temps #}
+		<div class="form-group row my-2">
+		    <label for="temps" class="col-sm-2 col-form-label col-form-label-sm">Durée du jeu</label>
+		    <div class="col-sm-8">
+			    <input  type="time" id="temps" class="form-control form-control-sm" name="temps" required value="{{jeu.temps}}" />
+		    </div>
+        </div>
+
+        {# regles #}
+        <div class="form-group row my-2" >
+            <label for="regles"class="col-sm-2 col-form-label col-form-label-sm">Règles du jeu</label>
+            <div class="col-sm-8">
+				<textarea class="form-control form-control-sm" id="regles" name="regles" rows="4" required >{{jeu.regles}}</textarea>
+		    </div>
+		</div>
+		
+		
+		{# Materiel #}
+		<div class="form-group row my-2">
+		    <label for="materiel" class="col-sm-2 col-form-label col-form-label-sm">Materiel nécessaire</label>
+		    <div class="col-sm-8">
+			    <input  type="text" id="materiel" class="form-control form-control-sm" name="materiel" required value="{{jeu.materiel}}" />
+		    </div>
+		</div>
+
+		{# nb de joueurs #}
+		<div class="form-group row my-2">
+		    <label for="num" class="col-sm-2 col-form-label col-form-label-sm">Nombre de joueur</label>
+		    <div class="col-sm-8">
+			    <input  type="number" id="num" class="form-control form-control-sm" name="nb_joueurs" required value="{{jeu.nb_joueurs}}" />
+		    </div>
+		</div>
+
+		{# Age #}
+		<div class="form-group row my-2">
+		    <label for="age" class="col-sm-2 col-form-label col-form-label-sm">Age minimum</label>
+		    <div class="col-sm-8">
+			    <input  type="number" id="age" class="form-control form-control-sm" name="age_min" required value="{{jeu.age_min}}" />
+		    </div>
+		</div>
+
+        {# Image
+		<div class="form-group row my-2">
+		    <label for="image" class="col-sm-2 col-form-label col-form-label-sm">Lien de l'image</label>
+		    <div class="col-sm-8">
+			    <input  type="file" id="image" class="form-control form-control-sm" name="img_jeu" required value="{{jeu.img_jeu}}" />
+		    </div>
+		</div> #}
+
+        {# Catégorie #}
+		<div class="form-group row my-2">
+		    <label for="categorie" class="col-sm-2 col-form-label col-form-label-sm">Catégorie</label>
+			<div class="col-sm-8">
+		    <select class="form-control form-control-sm" id="categorie" name="nom_categorie">
+				{% for categorie in categories %}
+					{% if categorie.nom_categorie == jeu.nom_categorie %}
+                		<option selected value="{{categorie.nom_categorie}}">{{categorie.nom_categorie}}</option>
+					{% else %}
+						<option value="{{categorie.nom_categorie}}">{{categorie.nom_categorie}}</option>
+					{% endif %}
+				{% endfor %}
+              </select>
+		    </div>
+		</div>
+
+		<br>
+        {# bouton #}
+		<div class="col-md-12 text-center">
+			<input type="hidden"name="nom_utilisateur" value="{{nom_utilisateur}}">
+			<input type="hidden"name="Id_jeu" value="{{jeu.Id_jeu}}">
+            <input class="btn btn-outline-info btn-light shadow" type="submit" name="validerModif" value="Valider les modifications"/>
+        </div>
+	
+	</fieldset>
+	</form>
+</div>	
+
+{% endblock %}

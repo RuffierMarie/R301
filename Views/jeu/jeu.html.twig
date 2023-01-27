@@ -1,0 +1,96 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+
+    <div  class="row d-flex container-fluid justify-content-around mx-auto ">
+        
+        
+            <div class="card d-flex justify-content-around my-2 mx-0 border-info shadow" style="width: 45rem;">
+              {# image #}
+              <img src={{"img/" ~ jeu.img_jeu}} class="card-img-top my-2" alt=""/>
+              <div class="card-body">
+                <div class="row d-flex">
+                  {# Titre #}
+                  <h5 class="card-title col-6 text-dark fw-bold fs-3">{{jeu.titre}}</h5>
+                   {# note moyenne #}
+                   <div class="col-6 d-flex justify-content-end">
+                    {% set moyenne = 0 %}
+                    {% for notes in note %}
+                      {% set moyenne = moyenne + notes.note / note|length %}
+                      {% endfor %}
+                      {% if note == null %}
+                      <p class="card-text"><span class="fw-bold">/5</span></p>
+                      {% else %}
+                        <p class="card-text"><span class="fw-bold">{{moyenne|round (1,'floor')}} /5</span></p>
+                      {% endif %}
+                    
+                  </div>
+                </div>
+                  {# catégorie #}
+                  <p class="card-text">{{jeu.nom_categorie}}</p>
+
+                  <div class="row d-flex justify-content-center">
+                      {# nombre de joueur #}
+                      <p class="card-text text-center col-6"><span class="fw-bold">Nombre de joueurs : </span>{{jeu.nb_joueurs}} joueurs</p>
+                      {# age minimum #}
+                      <p class="card-text text-center col-6"><span class="fw-bold">Age minimum : </span>{{jeu.age_min}} ans et +</p>
+                  </div>
+                 
+                  <div class="col-12">
+                      {# Materiel #}
+                      <p class="card-text"><span class="fw-bold"> Materiel nécessaire : </span> {{jeu.materiel}}</p>
+                      {# Regles #}
+                      <p class="card-text"> <span class="fw-bold">Règles du jeu : </span>{{jeu.regles}}</p>
+                  </div>
+                  <br>
+
+                  <div class="row d-flex">
+                    {# nom #}
+                    <p class="col-6">Un jeu proposé par <a class="text-dark fw-bold" href="?action=jeu&nom={{jeu.nom_utilisateur}}">{{jeu.nom_utilisateur}}</a> </p>
+                     {# bouton noter #}
+                     <div class="col-6 d-flex justify-content-end">
+                      {% if session.acces == "oui" %}
+                        <a href="?action=noter&Id={{jeu.Id_jeu}}" class="btn btn-outline-info btn-light shadow">Noter le jeu</a>
+                      {% endif %}
+                    </div>
+                  </div>
+
+              </div>
+          </div>
+
+
+          
+        <div class="d-flex justify-content-center">
+  <div class="card d-flex justify-content-around my-2 mx-0 border-info shadow" style="width: 45rem;">
+      <div class="text-center">
+          <h3 class="my-2">Notes et commentaires</h3>
+       </div>
+       {% for notes in note %}
+       <div class="d-flex justify-content-center my-2">
+        <div class="card w-100 mx-3 border-info shadow">
+          <div class="card-body">
+              {# commentaire #}
+            <p class="fw-bold">{{notes.commentaire}}</p>
+
+            <div class="d-flex justify-content-between">
+                {# nom #}
+              <div class="d-flex flex-row align-items-center">
+                <p class="small mb-0 ms-2"><a class="text-dark fw-bold" href="?action=jeu&nom={{notes.nom_utilisateur}}">{{notes.nom_utilisateur}}</a></p>
+              </div>
+              {# note #}
+              <div class="d-flex flex-row align-items-center">
+                <p class="small text-muted mb-0 fw-bold">{{notes.note}}/5</p>
+                {# class="far fa-thumbs-up ms-2 fa-xs text-black" style="margin-top: -0.16rem;" #}
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+    
+
+{% endblock %}

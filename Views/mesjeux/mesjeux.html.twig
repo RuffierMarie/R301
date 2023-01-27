@@ -1,0 +1,22 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+
+    <div  class="row d-flex container-fluid justify-content-around mx-auto" id="crea" >
+        <h2 class="text-center fw-bold my-2">Mes jeux</h2>
+            {% for jeu in jeux %}
+            <div class="card d-flex justify-content-around my-2 mx-0 col-12 col-sm-6 col-md-6 col-xl-3 border-info shadow " style="width: 30rem;">
+                <img src={{"img/" ~ jeu.img_jeu}} class="card-img-top my-2" alt=""/>
+            <div class="card-body">
+            <h5 class="card-title fw-bold fs-4">{{jeu.titre}}</h5>
+            <p class="card-text">{{jeu.nom_categorie}}</p>
+            <a href="index.php?action=plus&Id={{jeu.Id_jeu}}"  class="btn btn-outline-info btn-light shadow">Plus</a>
+            <a href="?action=modif&Id={{jeu.Id_jeu}}" class="btn btn-outline-warning btn-light shadow ">Modifier le jeu</a>
+        <a href="?action=suppr&Id={{jeu.Id_jeu}}" class="btn btn-outline-danger btn-light shadow">Supprimer le jeu</a>
+        <input type="hidden" name="Id_jeu" value="{{jeu.Id_jeu}}">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

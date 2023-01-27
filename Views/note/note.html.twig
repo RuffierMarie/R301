@@ -1,0 +1,30 @@
+{% extends "jeu/jeu.html.twig" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <div class="card d-flex justify-content-around my-2 mx-0 " style="width: 45rem;">
+      
+         
+          <div class="card">
+            <div class="card-body">
+                {# commentaire #}
+              <p>{{note.commentaire}}</p>
+  
+              <div class="d-flex justify-content-between">
+                  {# nom #}
+                <div class="d-flex flex-row align-items-center">
+                  <p class="small mb-0 ms-2">{{note.nom_utilisateur}}</p>
+                </div>
+                {# note #}
+                <div class="d-flex flex-row align-items-center">
+                  <p class="small text-muted mb-0">{{note.note}}/5</p>
+                  {# class="far fa-thumbs-up ms-2 fa-xs text-black" style="margin-top: -0.16rem;" #}
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endblock %}
